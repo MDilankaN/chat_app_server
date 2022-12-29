@@ -16,8 +16,12 @@ app.use(express.json());
 app.use(cors());
 
 //socket.io
-io.on("Connection", (socket) => {
+io.on("connection", (socket) => {
   console.log("connected");
+  console.log(socket.id," Has Connected");
+  socket.on("/test", (msg) => {
+    console.log(msg);
+  })
 });
 server.listen(port, "0.0.0.0", () => {
   console.log("Server Started");
