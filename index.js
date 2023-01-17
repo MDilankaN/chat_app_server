@@ -21,8 +21,8 @@ app.use(cors());
 io.on("connection", (socket) => {
   console.log("connected");
   console.log(socket.id," Has Connected");
-  socket.on("signin", (msg) => {
-    console.log(msg);
+  socket.on("signin", (id) => {
+    console.log(id);
     clients[id] = socket;
     console.log(clients);
   })
