@@ -11,6 +11,8 @@ var io = require("socket.io")(server, {
   },
 });
 
+var clients ={};
+
 //middelwere
 app.use(express.json());
 app.use(cors());
@@ -19,10 +21,17 @@ app.use(cors());
 io.on("connection", (socket) => {
   console.log("connected");
   console.log(socket.id," Has Connected");
-  socket.on("/test", (msg) => {
+  socket.on("signin", (msg) => {
+    console.log(msg);
+    clients[id] = socket;
+    console.log(clients);
+  })
+  socket.on('message', (msg) =>{
     console.log(msg);
   })
 });
+
+
 server.listen(port, "0.0.0.0", () => {
   console.log("Server Started");
 });
